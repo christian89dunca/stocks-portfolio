@@ -250,8 +250,8 @@ document.addEventListener('DOMContentLoaded', async ()=> {
     portfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
     availableStocks = await fetchStockLogos(stocks);
     renderAvailableStocks(availableStocks);
+    displayPortfolioValue(portfolio);
     if(portfolio.length > 0) {
-        displayPortfolioValue(portfolio);
         renderPortfolioStocks(portfolio);
     }
     loading(false);
