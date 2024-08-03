@@ -1,0 +1,267 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Archivo", sans-serif;
+    background-color: #eee;
+}
+
+main{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    min-height: 100vh;
+
+    /* justify-content: center; */
+
+}
+
+h1{
+    font-size: 6rem;
+    margin: 0;
+}
+
+h2{
+    font-size: 5rem;
+}
+
+h3{
+    font-size: 2rem;
+}
+
+
+.loading, .modal{
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading::after{
+    content: 'progress_activity';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 5rem;
+    color: #0062ff;
+    text-shadow: 0px 0px 10px #548fef;
+    background-color: transparent;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+
+.modal-container{
+background-color: #fff;
+box-shadow: 0px 0px 5px #777;
+padding: 50px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap:25px;
+border-radius: 4px;
+
+}
+
+.modal-container input{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    font-size: 3rem;
+    color: #777;
+}
+
+.modal-container input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modal-container input[type='button']{
+    border: none;
+    margin-top: 25px;
+    border-radius: 4px;
+}
+
+.stocks-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 15px;
+}
+.stocks-list p{
+    display: none;
+    margin: 0;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.available-stock{
+    position: relative;
+    width:50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    overflow: hidden;
+    border-bottom: 2px solid #ffffff00;
+}
+
+.logo-selected{
+    border-bottom: 2px solid #13b016;
+}
+
+.available-stock-logo-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.available-stock-logo-container:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.available-stock-logo-container img{
+    max-width:100%;
+    max-height: 100%;
+}
+
+.card-container{
+    perspective: 1000px; /* Create a 3D perspective */
+    margin: 0 15px;
+    box-sizing: border-box;
+}
+.card{
+    width: 200px;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d; /* Allow child elements to be transformed in 3D */
+    transition: transform 0.6s; /* Smooth transition for flipping */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 0px 20px; */
+}
+.card .card-front, .card .card-back{
+    width:100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0px 0px 10px #000;
+}
+.card .card-front:hover{
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+.card .card-front .image-container{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card .card-front div:last-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .card-front img,
+.card .card-back img{
+    max-height: 200px;
+    max-width: 100%;
+}
+
+.card .card-front h3
+.card .card-back h3{
+    margin-bottom: 0;
+}
+.card .card-front h3 + h4
+.card .card-back h3 + h4{
+    margin: 0;
+}
+
+.card .card-front,
+.card .card-back {
+    position: absolute;
+    width: 100%;
+    backface-visibility: hidden; /* Hide the back face when the front is visible */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.card-front {
+    background-color: #ffffff;
+}
+
+.card-back {
+    transform: rotateY(180deg); /* Rotate the back side 180 degrees */
+}
+
+.card.flipped {
+    transform: rotateY(180deg); /* Rotate the card when clicked */
+}
+
+.update-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+}
+
+.close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ccc;
+}
+.close-btn:hover{
+    color: #d60505;
+    text-shadow: 0px 0px 1px #d60505 ;
+    transition: 0.3s;
+}
+
+#select-stocks, #portfolio-value{
+    height: 200px;
+}
+
+#stocks-container{
+    width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
